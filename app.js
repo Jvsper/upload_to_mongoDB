@@ -61,6 +61,8 @@ const upload = multer({ storage }); //Direct connection to mongoDB
 // @route GET /
 // @desc Loads form
 app.get('/', (req, res)=> {
+	console.log("hello");
+
 	gfs.files.find().toArray((err, files) => {
 		if (!files || files.length ===0) {
 			console.log("There is nothing in the stream");
@@ -231,11 +233,9 @@ app.get('/image/:filename', (req, res)=>{
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Express Server is Running...");
 });
-/**
+/*
 app.listen(port, ()=>{
 	console.log("Server started on " + port)
 
 	
-})
-
-*/
+})*/

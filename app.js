@@ -11,9 +11,11 @@ const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 
 //Middleware
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(methodOverride("_method"));
+app.use(express.static("public"));
 
 // Mongo URI
 const mongoURI = "mongodb+srv://jkolp:Rkdwldns1994@uploads-mrcha.mongodb.net/test?retryWrites=true&w=majority";
@@ -157,7 +159,7 @@ app.get('/video/:filename', (req, res)=>{
 		// check if video
 		if(file.contentType==='video/mp4'){
 			// Read output to browser
-			
+			console.log("****** VIDEO HEADERS ------->", req.headers['range'])
 			if (req.headers['range']) {
 				console.log("RANGE")
 				/*
@@ -233,9 +235,11 @@ app.get('/image/:filename', (req, res)=>{
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Express Server is Running...");
 });
+
 /*
 app.listen(port, ()=>{
 	console.log("Server started on " + port)
 
 	
-})*/
+})
+*/
